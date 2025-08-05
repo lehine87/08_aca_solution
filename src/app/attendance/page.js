@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
 
@@ -10,12 +10,8 @@ export default function AttendancePage() {
   const [error, setError] = useState('')
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
 
-  useEffect(() => {
-    fetchTodayClasses()
-  }, [selectedDate])
-
   // 오늘 요일에 해당하는 클래스들 조회
-  const fetchTodayClasses = async () => {
+  const fetchTodayClasses = useCallback(async () => {
     try {
       setLoading(true)
       setError('')
@@ -51,7 +47,11 @@ export default function AttendancePage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [selectedDate])
+
+  useEffect(() => {
+    fetchTodayClasses()
+  }, [fetchTodayClasses])
 
   // 요일 이름 반환
   const getDayName = (dateStr) => {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter, useParams } from 'next/navigation'
 import Link from 'next/link'
@@ -29,15 +29,8 @@ export default function EditStudentPage() {
   const [errors, setErrors] = useState({})
   const [studentNotFound, setStudentNotFound] = useState(false)
 
-  // 페이지 로드시 학생 정보 가져오기
-  useEffect(() => {
-    if (studentId) {
-      fetchStudentData()
-    }
-  }, [studentId])
-
   // 학생 정보 조회
-  const fetchStudentData = async () => {
+  const fetchStudentData = useCallback(async () => {
     try {
       setLoading(true)
       console.log('🔍 학생 정보 조회 중...', studentId)
@@ -83,7 +76,14 @@ export default function EditStudentPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [studentId])
+
+  // 페이지 로드시 학생 정보 가져오기
+  useEffect(() => {
+    if (studentId) {
+      fetchStudentData()
+    }
+  }, [studentId, fetchStudentData])
 
   // 폼 입력 핸들러
   const handleInputChange = (e) => {

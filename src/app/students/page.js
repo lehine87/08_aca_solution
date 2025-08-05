@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
 
@@ -10,13 +10,8 @@ export default function StudentsPage() {
   const [error, setError] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
 
-  // 페이지 로드시 학생 데이터 가져오기
-  useEffect(() => {
-    fetchStudents()
-  }, [])
-
   // 학생 데이터 조회 함수
-  async function fetchStudents() {
+  const fetchStudents = useCallback(async () => {
     try {
       setLoading(true)
       setError('')
@@ -35,7 +30,12 @@ export default function StudentsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
+
+  // 페이지 로드시 학생 데이터 가져오기
+  useEffect(() => {
+    fetchStudents()
+  }, [fetchStudents])
 
   // 학생 삭제 함수
   async function deleteStudent(id, name) {
@@ -170,7 +170,7 @@ export default function StudentsPage() {
                     검색 결과가 없습니다
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    "{searchTerm}"과 일치하는 학생을 찾을 수 없습니다.
+                    &ldquo;{searchTerm}&rdquo;과 일치하는 학생을 찾을 수 없습니다.
                   </p>
                   <button
                     onClick={() => setSearchTerm('')}

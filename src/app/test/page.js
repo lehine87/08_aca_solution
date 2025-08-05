@@ -10,7 +10,6 @@ export default function TestPage() {
   const [error, setError] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
 
-  // 페이지 로드시 연결 테스트 실행
   useEffect(() => {
     runTests()
   }, [])
@@ -24,7 +23,6 @@ export default function TestPage() {
     try {
       console.log('🔍 Supabase 연결 테스트 시작')
       
-      // 1. 환경변수 확인
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
       const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
       
@@ -34,10 +32,8 @@ export default function TestPage() {
 
       console.log('✅ 환경변수 확인 완료')
 
-      // 2. 기본 연결 테스트 (간단한 쿼리)
       setConnectionStatus('데이터베이스 연결 중...')
       
-      // 더 간단한 연결 테스트 - 단순히 테이블에 접근만 해보기
       const { data: testData, error: testError } = await supabase
         .from('students')
         .select('id')
@@ -50,7 +46,6 @@ export default function TestPage() {
       console.log('✅ 데이터베이스 연결 성공')
       setConnectionStatus('연결 성공! 학생 데이터 조회 중...')
 
-      // 3. 실제 학생 데이터 불러오기
       const { data: studentsData, error: studentsError } = await supabase
         .from('students')
         .select('*')
@@ -76,7 +71,6 @@ export default function TestPage() {
     }
   }
 
-  // 안전한 상태 확인 함수
   function getStatusColor() {
     if (loading) return 'bg-yellow-100 text-yellow-800'
     if (isSuccess) return 'bg-green-100 text-green-800'
@@ -91,7 +85,6 @@ export default function TestPage() {
           🧪 Supabase 연결 테스트
         </h1>
 
-        {/* 연결 상태 표시 */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">📡 연결 상태</h2>
           <div className={`p-4 rounded ${getStatusColor()}`}>
@@ -122,7 +115,6 @@ export default function TestPage() {
           )}
         </div>
 
-        {/* 새로고침 버튼 */}
         <div className="text-center mb-6">
           <button
             onClick={runTests}
@@ -133,7 +125,6 @@ export default function TestPage() {
           </button>
         </div>
 
-        {/* 학생 데이터 표시 */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold mb-4">
             👥 학생 데이터 ({students.length}명)
@@ -148,14 +139,6 @@ export default function TestPage() {
             <div className="text-center py-8 text-gray-500">
               <p>📝 아직 등록된 학생이 없습니다.</p>
               <p className="text-sm mt-2">Supabase SQL Editor에서 테스트 데이터를 삽입해보세요.</p>
-              <div className="mt-4 text-left bg-gray-50 p-4 rounded">
-                <p className="font-medium mb-2">테스트 데이터 삽입 SQL:</p>
-                <code className="text-xs bg-white p-2 block rounded">
-                  INSERT INTO students (name, parent_phone, grade, subject, monthly_fee) VALUES<br/>
-                  ('김철수', '010-1234-5678', '중3', '수학', 300000),<br/>
-                  ('이영희', '010-2345-6789', '고1', '영어', 250000);
-                </code>
-              </div>
             </div>
           ) : error ? (
             <div className="text-center py-8 text-red-500">
@@ -210,7 +193,6 @@ export default function TestPage() {
           )}
         </div>
 
-        {/* 테스트 결과 요약 */}
         {isSuccess && (
           <div className="mt-6 bg-green-50 rounded-lg p-4">
             <h3 className="font-semibold text-green-800 mb-2">🎉 테스트 성공!</h3>

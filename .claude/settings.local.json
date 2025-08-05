@@ -5,7 +5,10 @@
       "Bash(touch:*)",
       "Bash(find:*)",
       "Bash(npm run lint)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)"
     ],
     "deny": []
   }

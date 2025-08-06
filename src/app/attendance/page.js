@@ -89,12 +89,20 @@ export default function AttendancePage() {
                 {selectedDate} ({getDayName(selectedDate)}) 수업 {todayClasses.length}개
               </p>
             </div>
-            <Link
-              href="/classes"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              📚 클래스 관리
-            </Link>
+            <div className="space-x-3">
+              <Link
+                href="/attendance/stats"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+              >
+                📊 출결 통계
+              </Link>
+              <Link
+                href="/classes"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+              >
+                📚 클래스 관리
+              </Link>
+            </div>
           </div>
 
           {/* 날짜 선택 */}

@@ -40,6 +40,38 @@ export default function ClassesPage() {
     }
   }
 
+  // 클래스 삭제 함수
+  const deleteClass = async (classId, className) => {
+    // 확인 대화상자
+    const confirmMessage = `정말로 '${className}' 클래스를 삭제하시겠습니까?\n\n⚠️ 주의사항:\n• 클래스와 관련된 모든 데이터가 삭제됩니다\n• 수업 스케줄이 모두 삭제됩니다\n• 학생 등록 정보가 모두 삭제됩니다\n• 이 작업은 되돌릴 수 없습니다`
+    
+    if (!confirm(confirmMessage)) {
+      return
+    }
+
+    try {
+      console.log('🗑️ 클래스 삭제 중...', classId)
+
+      // 클래스 삭제 (CASCADE로 관련 데이터 자동 삭제)
+      const { error } = await supabase
+        .from('classes')
+        .delete()
+        .eq('id', classId)
+
+      if (error) throw error
+
+      // 로컬 상태에서도 제거 (화면 즉시 업데이트)
+      setClasses(classes.filter(cls => cls.id !== classId))
+      
+      console.log('✅ 클래스 삭제 완료')
+      alert(`${className} 클래스가 성공적으로 삭제되었습니다.`)
+
+    } catch (err) {
+      console.error('❌ 클래스 삭제 오류:', err)
+      alert(`클래스 삭제 중 오류가 발생했습니다: ${err.message}`)
+    }
+  }
+
   // 요일 변환 함수
   const getDayName = (dayNumber) => {
     const days = ['일', '월', '화', '수', '목', '금', '토']
@@ -213,25 +245,36 @@ export default function ClassesPage() {
                   )}
 
                   {/* 액션 버튼 */}
-                  <div className="flex space-x-2 pt-4 border-t border-gray-100">
-                    <Link
-                      href={`/attendance/class/${classItem.id}`}
-                      className="flex-1 text-center bg-purple-100 hover:bg-purple-200 text-purple-700 py-2 px-3 rounded font-medium text-sm transition-colors"
+                  <div className="space-y-2 pt-4 border-t border-gray-100">
+                    {/* 첫 번째 줄 */}
+                    <div className="flex space-x-2">
+                      <Link
+                        href={`/attendance/class/${classItem.id}`}
+                        className="flex-1 text-center bg-purple-100 hover:bg-purple-200 text-purple-700 py-2 px-3 rounded font-medium text-sm transition-colors"
+                      >
+                        📋 출결
+                      </Link>
+                      <Link
+                        href={`/classes/${classItem.id}/edit`}
+                        className="flex-1 text-center bg-blue-100 hover:bg-blue-200 text-blue-700 py-2 px-3 rounded font-medium text-sm transition-colors"
+                      >
+                        ✏️ 수정
+                      </Link>
+                      <Link
+                        href={`/classes/${classItem.id}`}
+                        className="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded font-medium text-sm transition-colors"
+                      >
+                        👁️ 상세
+                      </Link>
+                    </div>
+                    
+                    {/* 두 번째 줄 - 삭제 버튼 */}
+                    <button
+                      onClick={() => deleteClass(classItem.id, classItem.name)}
+                      className="w-full text-center bg-red-100 hover:bg-red-200 text-red-700 py-2 px-3 rounded font-medium text-sm transition-colors"
                     >
-                      📋 출결
-                    </Link>
-                    <Link
-                      href={`/classes/${classItem.id}/edit`}
-                      className="flex-1 text-center bg-blue-100 hover:bg-blue-200 text-blue-700 py-2 px-3 rounded font-medium text-sm transition-colors"
-                    >
-                      ✏️ 수정
-                    </Link>
-                    <Link
-                      href={`/classes/${classItem.id}`}
-                      className="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded font-medium text-sm transition-colors"
-                    >
-                      👁️ 상세
-                    </Link>
+                      🗑️ 클래스 삭제
+                    </button>
                   </div>
                 </div>
               </div>

@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
+import PageLayout from '@/components/layout/PageLayout'
+import Card, { CardHeader, CardBody } from '@/components/ui/Card'
+import Button from '@/components/ui/Button'
 
 export default function InstructorTestPage() {
   const [testResults, setTestResults] = useState([])
@@ -284,76 +287,77 @@ export default function InstructorTestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* 헤더 */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">🧪 강사 관리 시스템 테스트</h1>
-              <p className="mt-1 text-gray-600">강사 관리 기능의 동작을 테스트합니다</p>
-            </div>
-            <div className="flex space-x-3">
-              <Link
-                href="/instructors"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-              >
-                강사 관리
-              </Link>
-              <Link
-                href="/test"
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors"
-              >
-                메인 테스트
-              </Link>
-            </div>
-          </div>
-        </div>
+    <PageLayout 
+      title="강사 관리 시스템 테스트"
+      actions={[
+        <Button key="instructors" as={Link} href="/instructors" variant="warning">
+          강사 관리
+        </Button>,
+        <Button key="test" as={Link} href="/test" variant="outline">
+          메인 테스트
+        </Button>
+      ]}
+    >
+      <div className="max-w-6xl mx-auto space-y-6">
+        <p className="text-gray-600">강사 관리 기능의 동작을 테스트합니다</p>
 
         {/* 테스트 컨트롤 */}
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">🎮 테스트 컨트롤</h3>
-          <div className="flex space-x-4">
-            <button
-              onClick={runAllTests}
-              disabled={loading}
-              className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-            >
-              {loading ? '테스트 실행 중...' : '🚀 전체 테스트 실행'}
-            </button>
-            <button
-              onClick={testConnection}
-              disabled={loading}
-              className="bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              📶 연결 테스트
-            </button>
-            <button
-              onClick={clearResults}
-              disabled={loading}
-              className="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              🗑️ 결과 지우기
-            </button>
-          </div>
-
-          {loading && (
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-              <div className="flex items-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-3"></div>
-                <span className="text-blue-800 font-medium">{currentTest}</span>
-              </div>
+        <Card>
+          <CardHeader>
+            <h3 className="text-lg font-medium text-gray-900 flex items-center">
+              <span className="material-icons mr-2">tune</span>
+              테스트 컨트롤
+            </h3>
+          </CardHeader>
+          <CardBody>
+            <div className="flex flex-wrap gap-4">
+              <Button
+                onClick={runAllTests}
+                disabled={loading}
+                loading={loading}
+                icon={loading ? null : "rocket_launch"}
+                variant="primary"
+              >
+                {loading ? '테스트 실행 중...' : '전체 테스트 실행'}
+              </Button>
+              <Button
+                onClick={testConnection}
+                disabled={loading}
+                icon="wifi"
+                variant="success"
+              >
+                연결 테스트
+              </Button>
+              <Button
+                onClick={clearResults}
+                disabled={loading}
+                icon="clear"
+                variant="secondary"
+              >
+                결과 지우기
+              </Button>
             </div>
-          )}
-        </div>
+
+            {loading && (
+              <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-3"></div>
+                  <span className="text-blue-800 font-medium">{currentTest}</span>
+                </div>
+              </div>
+            )}
+          </CardBody>
+        </Card>
 
         {/* 테스트 결과 */}
         {testResults.length > 0 && (
-          <div className="bg-white rounded-lg shadow">
-            <div className="p-6 border-b border-gray-200">
+          <Card>
+            <CardHeader>
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium text-gray-900">📋 테스트 결과</h3>
+                <h3 className="text-lg font-medium text-gray-900 flex items-center">
+                  <span className="material-icons mr-2">fact_check</span>
+                  테스트 결과
+                </h3>
                 <div className="text-sm text-gray-600">
                   총 {testResults.length}개 테스트 • 
                   <span className="text-green-600 ml-1">
@@ -364,7 +368,7 @@ export default function InstructorTestPage() {
                   </span>
                 </div>
               </div>
-            </div>
+            </CardHeader>
             
             <div className="max-h-96 overflow-y-auto">
               {testResults.map((result, index) => (
@@ -377,8 +381,8 @@ export default function InstructorTestPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
-                        <span className={`text-lg ${result.success ? 'text-green-600' : 'text-red-600'}`}>
-                          {result.success ? '✅' : '❌'}
+                        <span className="material-icons text-lg">
+                          {result.success ? 'check_circle' : 'error'}
                         </span>
                         <h4 className="font-medium text-gray-900">{result.test}</h4>
                         <span className="text-xs text-gray-500">{result.timestamp}</span>
@@ -403,69 +407,74 @@ export default function InstructorTestPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         )}
 
         {/* 테스트 항목 설명 */}
-        <div className="mt-6 bg-blue-50 rounded-lg p-6">
-          <h4 className="font-medium text-blue-900 mb-3">🔍 테스트 항목</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div>
-              <h5 className="font-medium text-blue-800 mb-2">기본 CRUD 테스트</h5>
-              <ul className="text-blue-700 space-y-1">
-                <li>• 강사 목록 조회</li>
-                <li>• 강사 등록 (모든 필드)</li>
-                <li>• 강사 상세 정보 조회</li>
-                <li>• 강사 정보 수정</li>
-                <li>• 강사 데이터 삭제</li>
-              </ul>
+        <Card className="bg-blue-50">
+          <CardBody>
+            <h4 className="font-medium text-blue-900 mb-3 flex items-center">
+              <span className="material-icons mr-2">search</span>
+              테스트 항목
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <h5 className="font-medium text-blue-800 mb-2">기본 CRUD 테스트</h5>
+                <ul className="text-blue-700 space-y-1">
+                  <li>• 강사 목록 조회</li>
+                  <li>• 강사 등록 (모든 필드)</li>
+                  <li>• 강사 상세 정보 조회</li>
+                  <li>• 강사 정보 수정</li>
+                  <li>• 강사 데이터 삭제</li>
+                </ul>
+              </div>
+              <div>
+                <h5 className="font-medium text-blue-800 mb-2">고급 기능 테스트</h5>
+                <ul className="text-blue-700 space-y-1">
+                  <li>• 데이터베이스 연결</li>
+                  <li>• 테이블 스키마 검증</li>
+                  <li>• 관계형 데이터 조회</li>
+                  <li>• 필수 컬럼 존재 확인</li>
+                  <li>• 데이터 무결성 검사</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h5 className="font-medium text-blue-800 mb-2">고급 기능 테스트</h5>
-              <ul className="text-blue-700 space-y-1">
-                <li>• 데이터베이스 연결</li>
-                <li>• 테이블 스키마 검증</li>
-                <li>• 관계형 데이터 조회</li>
-                <li>• 필수 컬럼 존재 확인</li>
-                <li>• 데이터 무결성 검사</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+          </CardBody>
+        </Card>
 
         {/* 추가 리소스 */}
-        <div className="mt-6 bg-gray-50 rounded-lg p-6">
-          <h4 className="font-medium text-gray-900 mb-3">🔗 관련 리소스</h4>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/instructors/new"
-              className="bg-orange-100 hover:bg-orange-200 text-orange-700 px-4 py-2 rounded font-medium text-sm transition-colors"
-            >
-              새 강사 등록
-            </Link>
-            <Link
-              href="/classes"
-              className="bg-blue-100 hover:bg-blue-200 text-blue-700 px-4 py-2 rounded font-medium text-sm transition-colors"
-            >
-              클래스 관리
-            </Link>
-            <Link
-              href="/attendance"
-              className="bg-purple-100 hover:bg-purple-200 text-purple-700 px-4 py-2 rounded font-medium text-sm transition-colors"
-            >
-              출결 관리
-            </Link>
-            <a
-              href="/doc/database_schema_update.sql"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-green-100 hover:bg-green-200 text-green-700 px-4 py-2 rounded font-medium text-sm transition-colors"
-            >
-              DB 스키마 문서
-            </a>
-          </div>
-        </div>
+        <Card className="bg-gray-50">
+          <CardHeader>
+            <h4 className="font-medium text-gray-900 flex items-center">
+              <span className="material-icons mr-2">link</span>
+              관련 리소스
+            </h4>
+          </CardHeader>
+          <CardBody>
+            <div className="flex flex-wrap gap-3">
+              <Button as={Link} href="/instructors/new" variant="warning" size="sm">
+                새 강사 등록
+              </Button>
+              <Button as={Link} href="/classes" variant="primary" size="sm">
+                클래스 관리
+              </Button>
+              <Button as={Link} href="/attendance" variant="secondary" size="sm">
+                출결 관리
+              </Button>
+              <Button 
+                as="a"
+                href="/doc/database_schema_update.sql"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="success"
+                size="sm"
+              >
+                DB 스키마 문서
+              </Button>
+            </div>
+          </CardBody>
+        </Card>
       </div>
-    </div>
+    </PageLayout>
   )
 }

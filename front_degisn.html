@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>학원 관리 시스템</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f59e0b;
+            --sidebar-bg: #1f2937;
+            --sidebar-hover-bg: #374151;
+            --sidebar-active-bg: #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+<aside class="w-64 bg-[var(--sidebar-bg)] text-white flex flex-col">
+<div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
+                학원조아
+            </div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md bg-[var(--sidebar-active-bg)]" href="#">
+<span class="material-icons mr-3">dashboard</span>
+                    대시보드
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">event_note</span>
+                    수업관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">people</span>
+                    원생관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">assignment_ind</span>
+                    강사관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">co_present</span>
+                    출결관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">assessment</span>
+                    성적관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">payment</span>
+                    수납관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">chat</span>
+                    상담관리
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">campaign</span>
+                    알림/메시지
+                </a>
+<a class="flex items-center px-4 py-2 text-sm font-medium rounded-md hover:bg-[var(--sidebar-hover-bg)]" href="#">
+<span class="material-icons mr-3">settings</span>
+                    기본설정
+                </a>
+</nav>
+</aside>
+<main class="flex-1 flex flex-col">
+<header class="h-16 bg-white border-b border-gray-200 flex items-center justify-end px-6">
+<div class="flex items-center">
+<span class="text-sm mr-4">최고관리자님</span>
+<img alt="User avatar" class="h-10 w-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhJA-HI48NNzBk2dANUoFxfUv54up4qsSqTgchnkoctyh7Rf2RoLR8MTRF9hvMF5PI5rCrVcUiQbHxSroCtD3tFyZte9KlJb5mKAF4F3IPsC8i9v3ol94ydcKGjLqhEeEye8wV4Xw6MNlS2hcp53t_Skw4wZKrPT91cl3qTBreMamAlzdVzSNRLlB_hck1z-Bpk7yf7iRez7n9UFsgBiW967slVAl2aWpKfX2cr7Em6FFjS_cbSmZxswdOaVomiSRoOxpqF1gRXe1P"/>
+</div>
+</header>
+<div class="p-6 flex-1 overflow-y-auto">
+<div class="flex items-center justify-between mb-6">
+<h1 class="text-2xl font-bold text-gray-800">출결관리</h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-1 space-y-6">
+<div class="bg-white p-4 rounded-lg shadow">
+<div class="flex items-center justify-between mb-4">
+<button class="p-1 rounded-full hover:bg-gray-100">
+<span class="material-icons text-gray-600">chevron_left</span>
+</button>
+<h2 class="font-bold text-lg text-gray-700">2023년 5월</h2>
+<button class="p-1 rounded-full hover:bg-gray-100">
+<span class="material-icons text-gray-600">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 text-center text-sm text-gray-500 mb-2">
+<div class="font-medium">일</div>
+<div class="font-medium">월</div>
+<div class="font-medium">화</div>
+<div class="font-medium">수</div>
+<div class="font-medium">목</div>
+<div class="font-medium">금</div>
+<div class="font-medium">토</div>
+</div>
+<div class="grid grid-cols-7 text-center">
+<div class="py-2 text-gray-400">30</div>
+<div class="py-2">1</div>
+<div class="py-2">2</div>
+<div class="py-2">3</div>
+<div class="py-2">4</div>
+<div class="py-2">5</div>
+<div class="py-2">6</div>
+<div class="py-2">7</div>
+<div class="py-2">8</div>
+<div class="py-2">9</div>
+<div class="py-2 relative">10
+                                    <div class="absolute bottom-1 left-1/2 -translate-x-1/2 flex space-x-0.5">
+<div class="w-1 h-1 bg-green-500 rounded-full"></div>
+<div class="w-1 h-1 bg-[var(--secondary-color)] rounded-full"></div>
+</div>
+</div>
+<div class="py-2">11</div>
+<div class="py-2">12</div>
+<div class="py-2">13</div>
+<div class="py-2">14</div>
+<div class="py-2">15</div>
+<div class="py-2">16</div>
+<div class="py-2">17</div>
+<div class="py-2">18</div>
+<div class="py-2">19</div>
+<div class="py-2">20</div>
+<div class="py-2">21</div>
+<div class="py-2">22</div>
+<div class="py-2">23</div>
+<div class="py-2 bg-[var(--primary-color)] rounded-full w-8 h-8 mx-auto flex items-center justify-center font-bold text-white">24</div>
+<div class="py-2">25</div>
+<div class="py-2">26</div>
+<div class="py-2">27</div>
+<div class="py-2">28</div>
+<div class="py-2">29</div>
+<div class="py-2">30</div>
+<div class="py-2">31</div>
+<div class="py-2 text-gray-400">1</div>
+<div class="py-2 text-gray-400">2</div>
+<div class="py-2 text-gray-400">3</div>
+</div>
+<div class="flex justify-end space-x-4 mt-4 text-sm">
+<div class="flex items-center"><span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>출석</div>
+<div class="flex items-center"><span class="w-3 h-3 bg-[var(--secondary-color)] rounded-full mr-2"></span>지각</div>
+<div class="flex items-center"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>결석</div>
+</div>
+</div>
+<div class="bg-white p-4 rounded-lg shadow">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-gray-700">수업리스트</h3>
+<span class="text-sm text-gray-500">2023-05-24</span>
+</div>
+<div class="space-y-2">
+<div class="p-3 rounded-lg border border-gray-200 flex justify-between items-center">
+<div>
+<p class="font-medium">21:00 ~ 22:00</p>
+<p class="text-sm text-gray-500">고2 이과 수학</p>
+</div>
+<button class="px-3 py-1 bg-gray-200 text-sm rounded-md text-gray-700 hover:bg-gray-300">선택</button>
+</div>
+<div class="p-3 rounded-lg border border-[var(--primary-color)] bg-indigo-50 flex justify-between items-center">
+<div>
+<p class="font-medium text-indigo-800">20:00 ~ 21:00</p>
+<p class="text-sm text-indigo-600">고1 공통 수학</p>
+</div>
+<button class="px-3 py-1 bg-[var(--primary-color)] text-white text-sm rounded-md">선택됨</button>
+</div>
+<div class="p-3 rounded-lg border border-gray-200 flex justify-between items-center">
+<div>
+<p class="font-medium">19:00 ~ 20:00</p>
+<p class="text-sm text-gray-500">중3 수학</p>
+</div>
+<button class="px-3 py-1 bg-gray-200 text-sm rounded-md text-gray-700 hover:bg-gray-300">선택</button>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-2 bg-white p-6 rounded-lg shadow">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-bold text-gray-800">20:00 반 2023-05-21 출석부</h2>
+<div class="flex space-x-2">
+<button class="px-4 py-2 bg-[var(--primary-color)] text-white rounded-md text-sm font-medium hover:bg-indigo-700">출석체크</button>
+<button class="px-4 py-2 bg-gray-600 text-white rounded-md text-sm font-medium hover:bg-gray-700">출석부 출력</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-gray-500 whitespace-nowrap">
+<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+<tr>
+<th class="p-4" scope="col"><input class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" type="checkbox"/></th>
+<th class="px-6 py-3" scope="col">학생명</th>
+<th class="px-6 py-3" scope="col">출석 여부</th>
+<th class="px-6 py-3" scope="col">등원시간</th>
+<th class="px-6 py-3" scope="col">하원시간</th>
+<th class="px-6 py-3" scope="col">메모</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="p-4"><input class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-gray-900">
+<p>김민준</p>
+<p class="text-xs text-gray-500">010-1234-5678</p>
+</td>
+<td class="px-6 py-4"><span class="px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">출석</span></td>
+<td class="px-6 py-4">19:58</td>
+<td class="px-6 py-4">21:02</td>
+<td class="px-6 py-4"></td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="p-4"><input class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-gray-900">
+<p>이서연</p>
+<p class="text-xs text-gray-500">010-2345-6789</p>
+</td>
+<td class="px-6 py-4"><span class="px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded-full">지각</span></td>
+<td class="px-6 py-4">20:10</td>
+<td class="px-6 py-4">21:05</td>
+<td class="px-6 py-4"></td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="p-4"><input class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-gray-900">
+<p>박도윤</p>
+<p class="text-xs text-gray-500">010-3456-7890</p>
+</td>
+<td class="px-6 py-4"><span class="px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">결석</span></td>
+<td class="px-6 py-4">-</td>
+<td class="px-6 py-4">-</td>
+<td class="px-6 py-4">사유: 병원</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="p-4"><input class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-gray-900">
+<p>최지우</p>
+<p class="text-xs text-gray-500">010-4567-8901</p>
+</td>
+<td class="px-6 py-4"><span class="px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">출석</span></td>
+<td class="px-6 py-4">19:55</td>
+<td class="px-6 py-4">21:00</td>
+<td class="px-6 py-4"></td>
+</tr>
+<tr class="bg-white hover:bg-gray-50">
+<td class="p-4"><input class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-gray-900">
+<p>정하은</p>
+<p class="text-xs text-gray-500">010-5678-9012</p>
+</td>
+<td class="px-6 py-4"><span class="px-2 py-1 text-xs font-medium text-gray-800 bg-gray-100 rounded-full">미처리</span></td>
+<td class="px-6 py-4">-</td>
+<td class="px-6 py-4">-</td>
+<td class="px-6 py-4"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex justify-end mt-6">
+<button class="px-6 py-2 bg-[var(--primary-color)] text-white rounded-md text-sm font-medium hover:bg-indigo-700">저장</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

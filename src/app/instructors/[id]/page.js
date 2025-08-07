@@ -427,7 +427,7 @@ export default function InstructorDetailPage() {
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-2">
                               <h4 className="text-lg font-semibold text-gray-900">{cls.name}</h4>
-                              {getClassStatusBadge(cls.status)}
+                              <StatusBadge status={cls.status}>{getClassStatusLabel(cls.status)}</StatusBadge>
                             </div>
                             
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">

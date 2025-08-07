@@ -205,6 +205,35 @@ export default function TestPage() {
             </ul>
           </div>
         )}
+
+        {/* 추가 테스트 링크 */}
+        <div className="mt-6 bg-white rounded-lg shadow p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">🧪 고급 테스트</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a
+              href="/test/instructor"
+              className="flex items-center p-4 bg-orange-50 hover:bg-orange-100 rounded-lg border border-orange-200 transition-colors group"
+            >
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-orange-200 transition-colors">
+                <span className="text-orange-600 text-xl">👨‍🏫</span>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900">강사 관리 시스템 테스트</h4>
+                <p className="text-sm text-gray-600 mt-1">강사 CRUD, 데이터베이스 스키마 검증</p>
+              </div>
+            </a>
+            
+            <div className="flex items-center p-4 bg-gray-50 rounded-lg border border-gray-200 opacity-50">
+              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-gray-400 text-xl">💰</span>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-500">수강료 관리 테스트</h4>
+                <p className="text-sm text-gray-400 mt-1">🚧 개발 예정</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

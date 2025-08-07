@@ -270,7 +270,7 @@ export default function EditStudentPage() {
                       name="grade"
                       value={formData.grade}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                     >
                       <option value="">학년 선택</option>
                       <option value="초1">초등 1학년</option>
@@ -299,7 +299,7 @@ export default function EditStudentPage() {
                       name="status"
                       value={formData.status}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                     >
                       <option value="active">활성 (수강 중)</option>
                       <option value="inactive">비활성 (휴학)</option>
@@ -365,7 +365,7 @@ export default function EditStudentPage() {
                       name="parent_name"
                       value={formData.parent_name}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                       placeholder="예: 김부모"
                     />
                   </div>
@@ -406,7 +406,7 @@ export default function EditStudentPage() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                     placeholder="예: 수학, 영어, 과학"
                   />
                 </div>
@@ -421,8 +421,8 @@ export default function EditStudentPage() {
                     name="memo"
                     value={formData.memo}
                     onChange={handleInputChange}
-                    rows="3"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="4"
+                    className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                     placeholder="특이사항이나 참고할 내용을 입력하세요"
                   />
                 </div>

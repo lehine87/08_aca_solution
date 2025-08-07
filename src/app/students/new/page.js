@@ -480,7 +480,7 @@ export default function NewStudentPage() {
                   
                   {/* 학생 이름 */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       학생 이름 <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -499,7 +499,7 @@ export default function NewStudentPage() {
 
                   {/* 학년 */}
                   <div>
-                    <label htmlFor="grade" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="grade" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       학년
                     </label>
                     <select
@@ -507,7 +507,7 @@ export default function NewStudentPage() {
                       name="grade"
                       value={formData.grade}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                     >
                       <option value="">학년 선택</option>
                       <option value="초1">초등 1학년</option>
@@ -528,7 +528,7 @@ export default function NewStudentPage() {
 
                   {/* 학생 연락처 */}
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       학생 연락처
                     </label>
                     <input
@@ -547,7 +547,7 @@ export default function NewStudentPage() {
 
                   {/* 학부모 이름 */}
                   <div>
-                    <label htmlFor="parent_name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="parent_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       학부모 이름
                     </label>
                     <input
@@ -556,14 +556,14 @@ export default function NewStudentPage() {
                       name="parent_name"
                       value={formData.parent_name}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                       placeholder="예: 김부모"
                     />
                   </div>
 
                   {/* 학부모 연락처 */}
                   <div>
-                    <label htmlFor="parent_phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="parent_phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       학부모 연락처 <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -582,7 +582,7 @@ export default function NewStudentPage() {
 
                   {/* 월 수강료 */}
                   <div>
-                    <label htmlFor="monthly_fee" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="monthly_fee" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       월 수강료 (원)
                     </label>
                     <input

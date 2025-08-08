@@ -69,37 +69,10 @@ export default function MainLayout({ children, pageTitle }) {
   }
 
   return (
-    <html lang="ko">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{pageTitle ? `${pageTitle} - 학원관리시스템` : '학원관리시스템'}</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" 
-          rel="stylesheet"
-        />
-        <link 
-          href="https://fonts.googleapis.com/icon?family=Material+Icons" 
-          rel="stylesheet"
-        />
-        <style type="text/tailwindcss">{`
-          body {
-            font-family: 'Noto Sans KR', sans-serif;
-          }
-          :root {
-            --primary-color: #4f46e5;
-            --secondary-color: #f59e0b;
-            --sidebar-bg: #1f2937;
-            --sidebar-hover-bg: #374151;
-            --sidebar-active-bg: #4f46e5;
-          }
-        `}</style>
-      </head>
-      <body className="bg-gray-100">
+    <div className="bg-gray-100 min-h-screen">
         <div className="flex h-screen">
           {/* 사이드바 */}
-          <aside className="w-64 bg-[var(--sidebar-bg)] text-white flex flex-col">
+          <aside className="w-64 bg-gray-800 text-white flex flex-col">
             {/* 로고/브랜드 */}
             <div className="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
               <Link href="/" className="hover:text-gray-200 transition-colors">
@@ -115,8 +88,8 @@ export default function MainLayout({ children, pageTitle }) {
                   href={item.href}
                   className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                     isActive(item)
-                      ? 'bg-[var(--sidebar-active-bg)]'
-                      : 'hover:bg-[var(--sidebar-hover-bg)]'
+                      ? 'bg-indigo-600'
+                      : 'hover:bg-gray-700'
                   }`}
                 >
                   <span className="material-icons mr-3 text-xl">
@@ -164,7 +137,6 @@ export default function MainLayout({ children, pageTitle }) {
             </div>
           </main>
         </div>
-      </body>
-    </html>
+    </div>
   )
 }

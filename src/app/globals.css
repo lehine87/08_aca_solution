@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -132,6 +131,11 @@
     0px 20px 24px -4px rgba(16, 24, 40, 0.08),
     0px 8px 8px -4px rgba(16, 24, 40, 0.03);
   --shadow-focus-ring: 0px 0px 0px 4px rgba(70, 95, 255, 0.12);
+  
+  /* 사이드바 관련 색상 */
+  --color-sidebar-bg: #1f2937;
+  --color-sidebar-hover-bg: #374151;
+  --color-sidebar-active-bg: #4f46e5;
 }
 
 @layer base {

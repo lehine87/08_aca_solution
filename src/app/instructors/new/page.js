@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import AdminLayout from '@/components/layout/AdminLayout'
 
 export default function NewInstructorPage() {
   const router = useRouter()
@@ -120,7 +121,8 @@ export default function NewInstructorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6">
+    <AdminLayout>
+      <div className="min-h-screen bg-gray-50 py-6">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 헤더 */}
@@ -447,6 +449,7 @@ export default function NewInstructorPage() {
           </ul>
         </div>
       </div>
-    </div>
+      </div>
+    </AdminLayout>
   )
 }
